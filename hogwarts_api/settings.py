@@ -43,6 +43,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-llancruzz-hogwartsapi-th9u8bovvha.ws-eu93.gitpod.io']
 
 # Application definition
 
