@@ -43,6 +43,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Fix Forbidden (403) CSRF verification failed. Added CSRF_TRUSTED_ORIGINS
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-llancruzz-hogwartsapi-th9u8bovvha.ws-eu93.gitpod.io']
 
