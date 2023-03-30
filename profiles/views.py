@@ -10,6 +10,7 @@ from .serializers import ProfileSerializer
 class ProfileList(APIView):
     """
     Profile List View.
+    List all profiles.
     """
 
     def get(self, request):
@@ -22,7 +23,10 @@ class ProfileList(APIView):
 class ProfileDetail(APIView):
     """
     Profile Detail View.
+    Retrieve and edit profile by id.
     """
+    # Add class to serializer. It makes the form view more readable.
+    serializer_class = ProfileSerializer
 
     def get_object(self, pk):
         try:
