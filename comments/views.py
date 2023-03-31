@@ -8,7 +8,8 @@ from .serializer import CommentSerializer, CommentDetailSerializer
 
 class CommentList(generics.ListCreateAPIView):
     """
-    Serializer for the Comment model
+    Serializer for the Comment model.
+    List comments or create a comment if logged in.
     Adds three extra fields when returning a list of Comment instances
     """
     serializer_class = CommentSerializer
@@ -17,3 +18,14 @@ class CommentList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+
+class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    CommentDetail generic view:
+    Retrieve a comment, or update or delete it by id if you own it.
+    Allow only owner to be able to edit or delete comments.
+    """
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = CommentDetailSerializer
+    queryset = Comment.objects.all()
