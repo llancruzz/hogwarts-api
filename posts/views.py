@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
 from .serializers import PostSerializer
-from hogwarts_api.permissions import isOwnerOrReadOnly
+from hogwarts_api.permissions import IsOwnerOrReadOnly
 
 
 class PostList(APIView):
@@ -41,7 +41,7 @@ class PostDetail(APIView):
     Retrieve and edit profile by id.
     """
     serializer_class = PostSerializer
-    permission_classes = [isOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     # Get the post detail view to handle the case if the post does not exit
     def get_object(self, pk):

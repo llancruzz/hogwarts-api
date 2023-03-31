@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
 from .serializers import ProfileSerializer
-from hogwarts_api.permissions import isOwnerOrReadOnly
+from hogwarts_api.permissions import IsOwnerOrReadOnly
 
 
 # Create your views here.
@@ -30,7 +30,7 @@ class ProfileDetail(APIView):
     # Add class to serializer. It makes the form view more readable.
     serializer_class = ProfileSerializer
     # Add permission to allow only ownwer to edit their profile details
-    permission_classes = [isOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
 
     def get_object(self, pk):
         try:

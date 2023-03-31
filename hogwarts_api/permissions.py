@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class isOwnerOrReadOnly(permissions.BasePermission):
+class IsOwnerOrReadOnly(permissions.BasePermission):
     """
     Create permission to check if the user is the owner.
     Only Owner is allow to edit their profile details.
