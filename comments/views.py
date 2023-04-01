@@ -1,7 +1,7 @@
 from rest_framework import generics, permissions
 from hogwarts_api.permissions import IsOwnerOrReadOnly
 from .models import Comment
-from .serializer import CommentSerializer, CommentDetailSerializer
+from .serializers import CommentSerializer, CommentDetailSerializer
 
 # Generics views List = GET and Create = PUT
 
