@@ -8,8 +8,7 @@ from .serializers import CommentSerializer, CommentDetailSerializer
 
 class CommentList(generics.ListCreateAPIView):
     """
-    Serializer for the Comment model.
-    List comments or create a comment if logged in.
+    List all comments or create a comment if logged in.
     Adds three extra fields when returning a list of Comment instances
     """
     serializer_class = CommentSerializer
