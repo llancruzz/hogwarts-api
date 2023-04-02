@@ -1,5 +1,6 @@
 from django.db.models import Count
 from rest_framework import generics, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Post
 from .serializers import PostSerializer
 from hogwarts_api.permissions import IsOwnerOrReadOnly
@@ -16,7 +17,14 @@ class PostList(generics.ListCreateAPIView):
         comments_count=Count('comment', distinct=True),
         likes_count=Count('likes', distinct=True),
     ).order_by('-created_at')
-    filter_backends = [filters.OrderingFilter, filters.SearchFilter,]
+    filter_backends = [filters.OrderingFilter,
+                       filters.SearchFilter, DjangoFilterBackend,]
+    filterset_fields = [
+        'owner__followed__owner__profile',  # users feed
+        'likes__owner__profile',  # users liked posts
+        'owner__profile',  # users posts
+        'house',  # houses category choice
+    ]
     search_fields = [
         'owner__username',
         'title',
