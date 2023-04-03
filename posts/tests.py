@@ -12,7 +12,8 @@ class PostListViewTests(APITestCase):
     Logged out user can't create a post.
     """
 
-    # Method setUp() that will automatically run before every test method in the class.
+    # Method setUp() that will automatically run before every
+    # test method in the class.
     def setUp(self):
         User.objects.create_user(username='alan', password='test')
 
