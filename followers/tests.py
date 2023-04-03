@@ -42,6 +42,5 @@ class FollowerListViewTestCase(APITestCase):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
-        # Update this assertion
         self.assertEqual(response.data[0]['owner'], 'alan')
         self.assertEqual(response.data[0]['followed'], self.user2.id)
