@@ -46,8 +46,14 @@ class CommentDetailViewTests(APITestCase):
         self.post = Post.objects.create(
             owner=self.alan, title='testing alan', content='alan\'s content'
         )
+        self.post = Post.objects.create(
+            owner=self.alex, title='testing alex', content='alex\'s content'
+        )
         self.comment = Comment.objects.create(
             owner=self.alan, post=self.post, content='test comment'
+        )
+        self.comment = Comment.objects.create(
+            owner=self.alex, post=self.post, content='test comment'
         )
 
     def test_can_retrieve_comment_using_valid_id(self):
@@ -60,9 +66,15 @@ class CommentDetailViewTests(APITestCase):
         response = self.client.get('/comment-detail/555/')
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-    def test_user_can_update_own_post(self):
-        self.client.login(username='alan', password='test')
-        response = self.client.put('/posts/1/', {'title': 'irish'})
+    def test_user_can_update_own_comment(self):
+        self.client.login(username='alan', password='testpass')
+        url = reverse('comment-detail', args=[self.comment.id])
+        response = self.client.get(url)
         post = Post.objects.filter(pk=1).first()
-        self.assertEqual(post.title, 'irish')
+        self.assertEqual(post.content, 'alan\'s content')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_user_cant_update_another_users_comment(self):
+        self.client.login(username='alan', password='testpass')
+        response = self.client.put('/posts/2/', {'content': 'alex\'s content'})
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
