@@ -1,3 +1,47 @@
-from django.test import TestCase
+from rest_framework import status
+from rest_framework.test import APITestCase
+from django.urls import reverse
+from django.contrib.auth.models import User
+from .models import Follower
 
-# Create your tests here.
+
+class FollowerListViewTestCase(APITestCase):
+    """
+    Follower list test:
+    List followers authenticate users.
+    List followers unauthenticated users.
+    """
+
+    def setUp(self):
+        self.user1 = User.objects.create_user(
+            username='alan',
+            password='password1'
+        )
+        self.user2 = User.objects.create_user(
+            username='alex',
+            password='password1'
+        )
+        self.user1.save()
+        self.user2.save()
+
+        self.client.force_authenticate(user=self.user1)
+        self.url = reverse('follow-list')
+
+    def test_follow_list_view_authenticated(self):
+        # Test that an authenticated user can retrieve a list of followers
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 0)
+
+        # Follow another user
+        follow = Follower.objects.create(
+            owner=self.user1,
+            followed=self.user2
+        )
+        # print(follow.owner, follow.followed)
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(len(response.data), 1)
+        # Update this assertion
+        self.assertEqual(response.data[0]['owner'], 'alan')
+        self.assertEqual(response.data[0]['followed'], self.user2.id)

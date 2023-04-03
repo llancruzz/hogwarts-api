@@ -10,7 +10,7 @@ User = get_user_model()
 
 class LikeListViewTestCase(APITestCase):
     """
-    Like lis test:
+    Like list test:
     List likes authenticate users.
     List likes unauthenticated users.
     """
