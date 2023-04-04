@@ -62,13 +62,25 @@ class FollowerListViewTestCase(APITestCase):
         self.assertEqual(str(self.follower), f'{self.user1} {self.user2}')
 
 
-class FollowerSerializerAPITestCase(APITestCase):
-    def setUp(self):
-        self.owner_username = 'alan_owner'
-        self.followed_username = 'alex_followed'
-        self.owner = User.objects.create(username=self.owner_username)
-        self.followed = User.objects.create(username=self.followed_username)
-        self.data = {
-            'owner': {'username': self.owner_username},
-            'followed': self.followed.id
-        }
+class FollowerSerializerTestCase(APITestCase):
+    def test_create_duplicate_follower(self):
+        # Create a user
+        user = User.objects.create_user(
+            username='testuser', email='testuser@example.com', password='password'
+        )
+
+        # Create a follower for the user
+        Follower.objects.create(owner=user, followed=user)
+
+        # Attempt to create a duplicate follower
+        serializer = FollowerSerializer(
+            data={'owner': user.id, 'followed': user.id})
+        with self.assertRaises(ValidationError) as cm:
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+
+        # Check that the validation error is raised with the expected message
+        self.assertEqual(
+            cm.exception.detail,
+            {'Duplicate entry': ' You are already following this user.'}
+        )
