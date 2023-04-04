@@ -44,3 +44,8 @@ class FollowerListViewTestCase(APITestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['owner'], 'alan')
         self.assertEqual(response.data[0]['followed'], self.user2.id)
+
+    def test_str_method(self):
+        self.follower = Follower.objects.create(
+            owner=self.user1, followed=self.user2)
+        self.assertEqual(str(self.follower), f'{self.user1} {self.user2}')
