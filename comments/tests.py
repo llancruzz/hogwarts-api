@@ -78,3 +78,14 @@ class CommentDetailViewTests(APITestCase):
         self.client.login(username='alan', password='testpass')
         response = self.client.put('/posts/2/', {'content': 'alex\'s content'})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+
+
+class CommentModelTestCase(APITestCase):
+    def test_comment_string_representation(self):
+        user = User.objects.create(username='testuser')
+        post = Post.objects.create(
+            title='test post', content='test content', owner=user)
+        comment = Comment.objects.create(
+            owner=user, post=post, content='test comment')
+        expected_string = 'test comment'
+        self.assertEqual(str(comment), expected_string)
