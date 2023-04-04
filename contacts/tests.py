@@ -33,3 +33,8 @@ class ContactAPITest(APITestCase):
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_contact_string_representation(self):
+        contact = Contact.objects.get(id=1)
+        expected_string = f'{contact.owner} {contact.reason_contact}'
+        self.assertEqual(str(contact), expected_string)
