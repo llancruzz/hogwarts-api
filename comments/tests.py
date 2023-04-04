@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import status
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APIClient
 from .models import Comment, Post
 from django.urls import reverse
 
@@ -14,7 +14,9 @@ class CommentListViewTests(APITestCase):
     """
 
     def setUp(self):
+        self.client = APIClient()
         User.objects.create_user(username='alan', password='test')
+        self.url = '/comments/'
 
     def test_can_list_comments(self):
         alan = User.objects.get(username='alan')
@@ -23,6 +25,20 @@ class CommentListViewTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         print(response.data)
         print(len(response.data))
+
+    def test_user_create_comment(self):
+        alex = User.objects.create_user(username='alex', password='test')
+        post = Post.objects.create(owner=alex, content='testing comment')
+        self.client.login(username='alex', password='test')
+        data = {'content': 'Test comment', 'post': post.id}
+        response = self.client.post(self.url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Comment.objects.count(), 1)
+        comment = Comment.objects.first()
+        self.assertEqual(comment.content, 'Test comment')
+        self.assertEqual(comment.post.id, post.id)
+        self.assertEqual(comment.owner, alex)
+        print(response.content.decode('utf-8'))
 
     def test_logged_out_user_cant_create_comment(self):
         response = self.client.post('/comments/', {'content': 'testing'})
