@@ -40,3 +40,12 @@ class LikeListViewTestCase(APITestCase):
         url = reverse('like-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_like_string_representation(self):
+        user = User.objects.create_user(username='harry')
+        post = Post.objects.create(
+            owner=user, title='test post', content='test content')
+        like = Like.objects.create(owner=user, post=post)
+
+        expected_str = f'{user} {post}'
+        self.assertEqual(str(like), expected_str)
