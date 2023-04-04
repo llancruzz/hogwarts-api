@@ -49,3 +49,16 @@ class LikeListViewTestCase(APITestCase):
 
         expected_str = f'{user} {post}'
         self.assertEqual(str(like), expected_str)
+
+    def test_duplicate_likes_should_not_be_allowed(self):
+        """Test a duplicate like cannot be created"""
+
+        self.client.login(username="alan", password='testpass')
+        response = self.client.post(
+            "/likes/",
+            {
+                "post": self.post.id,
+            },
+        )
+        self.assertEqual(response.data, {'detail': 'Possible duplicate'})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

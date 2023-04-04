@@ -66,7 +66,7 @@ class FollowerSerializerTestCase(APITestCase):
     def test_create_duplicate_follower(self):
         # Create a user
         user = User.objects.create_user(
-            username='testuser', email='testuser@example.com', password='password'
+            username='testuser', password='password'
         )
 
         # Create a follower for the user
