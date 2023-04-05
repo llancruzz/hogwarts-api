@@ -1,3 +1,4 @@
+# Import necessary modules
 from rest_framework import generics, permissions
 from rest_framework.authentication import TokenAuthentication, SessionAuthentication
 from hogwarts_api.permissions import IsOwnerOrReadOnly

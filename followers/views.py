@@ -1,3 +1,4 @@
+# Import necessary modules
 from rest_framework import generics, permissions
 from hogwarts_api.permissions import IsOwnerOrReadOnly
 from .models import Follower
