@@ -31,6 +31,8 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Use Dev value from env.py to differentiate between
+# Dev and Prod Modes & add pagination
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [(
         'rest_framework.authentication.SessionAuthentication'
@@ -40,17 +42,19 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-     'DATETIME_FORMAT': '%d %b %Y',
+    'DATETIME_FORMAT': '%d %b %Y',
 }
 
 if 'DEV' not in os.environ:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = [
         'rest_framework.renderers.JSONRenderer'
     ]
-
+# To enable token authentication
 REST_USE_JWT = True
+# To ensure tokens sent over HTTPS only
 JWT_AUTH_SECURE = True
 # Access token
+# Declare cookie names for the access and refresh tokens
 JWT_AUTH_COOKIE = 'my-app-auth'
 # Refresh token
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
@@ -104,6 +108,8 @@ INSTALLED_APPS = [
     'followers',
     'contacts',
 ]
+
+# Application definition
 SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
