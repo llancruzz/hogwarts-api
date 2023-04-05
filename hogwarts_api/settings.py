@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'coverage',
+    'rest_framework.authtoken',
+    'dj_rest_auth',
 
     'profiles',
     'posts',
