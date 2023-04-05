@@ -9,7 +9,7 @@ from .settings import (
 @api_view()
 def root_route(request):
     return Response({
-        "message": "Welcome to my Hogwarts AP Project!",
+        "message": "Welcome to my Hogwarts API Project!",
         "documentation": "https://github.com/llancruzz/hogwarts-api"
     })
 
