@@ -46,6 +46,11 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 # Refresh token
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 
+# Overwrite the default USER_DETAILS_SERIALIZER
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'hogwarts_api.serializers.CurrentUserSerializer'
+}
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
