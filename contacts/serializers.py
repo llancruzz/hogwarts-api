@@ -9,11 +9,12 @@ class ContactSerializer(serializers.ModelSerializer):
     """
     Serializer for the Contact Model.
     """
+
     # Define read-only fields for the owner username,
     # profile image URL, and profile ID
-    owner = serializers.ReadOnlyField(source='owner.username')
-    profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
-    profile_id = serializers.ReadOnlyField(source='owner.profile.id')
+    owner = serializers.ReadOnlyField(source="owner.username")
+    profile_image = serializers.ReadOnlyField(source="owner.profile.image.url")
+    profile_id = serializers.ReadOnlyField(source="owner.profile.id")
     # Define methods for getting the natural language representation
     # of the created_at and updated_at fields
     created_at = serializers.SerializerMethodField()
@@ -32,6 +33,12 @@ class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = [
-            'id', 'owner', 'reason_contact', 'content',
-            'profile_id', 'profile_image', 'created_at', 'updated_at',
+            "id",
+            "owner",
+            "reason_contact",
+            "content",
+            "profile_id",
+            "profile_image",
+            "created_at",
+            "updated_at",
         ]

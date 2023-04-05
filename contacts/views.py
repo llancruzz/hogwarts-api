@@ -10,6 +10,7 @@ class ContactList(generics.ListCreateAPIView):
     ContactList generic view:
     List all contact or create a contact if logged in.
     """
+
     serializer_class = ContactSerializer
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
@@ -28,6 +29,7 @@ class ContactDetail(generics.RetrieveUpdateDestroyAPIView):
     ContactDetail generic view:
     Retrieve a contact, or update or delete it by id if you own it.
     """
+
     serializer_class = ContactSerializer
     permission_classes = [permissions.IsAdminUser]
     queryset = Contact.objects.all()

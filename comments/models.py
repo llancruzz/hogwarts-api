@@ -8,6 +8,7 @@ class Comment(models.Model):
     """
     Comment model, related to User and Post
     """
+
     # Defining the fields for the Comment model
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -18,7 +19,7 @@ class Comment(models.Model):
     # Setting the default ordering for the model to be based
     # on creation time, with newest first
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
         return self.content

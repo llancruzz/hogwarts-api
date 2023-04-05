@@ -14,6 +14,7 @@ class CommentList(generics.ListCreateAPIView):
     List all comments or create a comment if logged in.
     Adds three extra fields when returning a list of Comment instances
     """
+
     # Setting the serializer class for this view
     serializer_class = CommentSerializer
     # Setting the permissions for this view to allow read access
@@ -24,7 +25,7 @@ class CommentList(generics.ListCreateAPIView):
     # Setting the filter backend for this view to use DjangoFilterBackend
     filter_backends = [DjangoFilterBackend]
     # Specifying the fields to be filtered on
-    filterset_fields = ['post']
+    filterset_fields = ["post"]
 
     # Overriding the perform_create method to set the owner
     # of the comment to the current user
@@ -39,6 +40,7 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve a comment, or update or delete it by id if you own it.
     Allow only owner to be able to edit or delete comments.
     """
+
     # Setting the permissions for this view to allow read access
     # to anyone and write access only to the owner of the comment
     permission_classes = [IsOwnerOrReadOnly]

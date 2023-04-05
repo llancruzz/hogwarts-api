@@ -8,13 +8,14 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     """
     Post model, related to 'owner'. A user instance.
-    Default image set to that we can always reference image.url. 
+    Default image set to that we can always reference image.url.
     """
+
     house_choices = [
-        ('Gryffindor', 'Gryffindor'),
-        ('Slytherin', 'Slytherin'),
-        ('Ravenclaw', 'Ravenclaw'),
-        ('Hufflepuff', 'Hufflepuff'),
+        ("Gryffindor", "Gryffindor"),
+        ("Slytherin", "Slytherin"),
+        ("Ravenclaw", "Ravenclaw"),
+        ("Hufflepuff", "Hufflepuff"),
     ]
 
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -24,10 +25,11 @@ class Post(models.Model):
     content = models.TextField(blank=True)
     house = models.CharField(max_length=45, choices=house_choices, null=True)
     image = models.ImageField(
-        upload_to='images/', default='../default_post_aypa8e', blank=True)
+        upload_to="images/", default="../default_post_aypa8e", blank=True
+    )
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ["-created_at"]
 
     def __str__(self):
-        return f'{self.id} {self.title}'
+        return f"{self.id} {self.title}"

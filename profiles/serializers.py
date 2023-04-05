@@ -8,6 +8,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     """
     Profile serializer class
     """
+
     # define fields for the serializer
     owner = serializers.ReadOnlyField(source="owner.username")
     is_owner = serializers.SerializerMethodField()
@@ -22,7 +23,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         Get the request object from the context.
         Return whether the current user is the owner of the profile
         """
-        request = self.context['request']
+        request = self.context["request"]
         return request.user == obj.owner
 
     def get_following_id(self, obj):
@@ -35,18 +36,26 @@ class ProfileSerializer(serializers.ModelSerializer):
         otherwise return None.
         If the user is not authenticated, return None
         """
-        user = self.context['request'].user
+        user = self.context["request"].user
         if user.is_authenticated:
             following = Follower.objects.filter(
-                owner=user, followed=obj.owner
-            ).first()
+                owner=user, followed=obj.owner).first()
             return following.id if following else None
         return None
 
     class Meta:
         model = Profile
-        fields = ["id", "owner", "created_at",
-                  "updated_at", "name", "content",
-                  "image", 'is_owner', 'following_id',
-                  'posts_count', 'followers_count', 'following_count',
-                  ]
+        fields = [
+            "id",
+            "owner",
+            "created_at",
+            "updated_at",
+            "name",
+            "content",
+            "image",
+            "is_owner",
+            "following_id",
+            "posts_count",
+            "followers_count",
+            "following_count",
+        ]

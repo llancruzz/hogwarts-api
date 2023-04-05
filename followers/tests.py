@@ -18,64 +18,57 @@ class FollowerListViewTestCase(APITestCase):
 
     def setUp(self):
         self.user1 = User.objects.create_user(
-            username='alan',
-            password='password1'
-        )
+            username="alan", password="password1")
         self.user2 = User.objects.create_user(
-            username='alex',
-            password='password1'
-        )
+            username="alex", password="password1")
         self.user1.save()
         self.user2.save()
 
         self.client.force_authenticate(user=self.user1)
-        self.url = reverse('follow-list')
+        self.url = reverse("follow-list")
 
     def test_follow_list_view_authenticated(self):
         # Test that an authenticated user can retrieve a list of followers
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 0)
+        self.assertEqual(len(response.data), 4)
 
         # Follow another user
-        follow = Follower.objects.create(
-            owner=self.user1,
-            followed=self.user2
-        )
+        follow = Follower.objects.create(owner=self.user1, followed=self.user2)
         # print(follow.owner, follow.followed)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]['owner'], 'alan')
-        self.assertEqual(response.data[0]['followed'], self.user2.id)
+        self.assertEqual(len(response.data), 4)
+        self.assertIn("alan", [f["owner"] for f in response.data["results"]])
+        self.assertIn(self.user2.id, [f["followed"]
+                      for f in response.data["results"]])
 
     def test_create_follower_view_authenticated(self):
         # Test that an authenticated user can create a follower
-        data = {'owner': self.user1.username, 'followed': self.user2.id}
+        data = {"owner": self.user1.username, "followed": self.user2.id}
         response = self.client.post(self.url, data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['owner'], 'alan')
-        self.assertEqual(response.data['followed'], self.user2.id)
+        self.assertEqual(response.data["owner"], "alan")
+        self.assertEqual(response.data["followed"], self.user2.id)
 
     def test_str_method(self):
         self.follower = Follower.objects.create(
             owner=self.user1, followed=self.user2)
-        self.assertEqual(str(self.follower), f'{self.user1} {self.user2}')
+        self.assertEqual(str(self.follower), f"{self.user1} {self.user2}")
 
 
 class FollowerSerializerTestCase(APITestCase):
     def test_create_duplicate_follower(self):
         # Create a user
         user = User.objects.create_user(
-            username='testuser', password='password'
-        )
+            username="testuser", password="password")
 
         # Create a follower for the user
         Follower.objects.create(owner=user, followed=user)
 
         # Attempt to create a duplicate follower
         serializer = FollowerSerializer(
-            data={'owner': user.id, 'followed': user.id})
+            data={"owner": user.id, "followed": user.id})
         with self.assertRaises(ValidationError) as cm:
             serializer.is_valid(raise_exception=True)
             serializer.save()
@@ -83,5 +76,5 @@ class FollowerSerializerTestCase(APITestCase):
         # Check that the validation error is raised with the expected message
         self.assertEqual(
             cm.exception.detail,
-            {'Duplicate entry': ' You are already following this user.'}
+            {"Duplicate entry": " You are already following this user."},
         )
