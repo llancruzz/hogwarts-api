@@ -59,7 +59,9 @@ JWT_AUTH_SECURE = True
 JWT_AUTH_COOKIE = 'my-app-auth'
 # Refresh token
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
-
+# To be able to have the front end app and the API
+# deployed to different platforms
+JWT_AUTH_SAMESITE = 'None'
 # Overwrite the default USER_DETAILS_SERIALIZER
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'hogwarts_api.serializers.CurrentUserSerializer'
@@ -69,12 +71,12 @@ REST_AUTH_SERIALIZERS = {
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-boe05@_*+h*g339tp1+!&cl4-3%3f$io2l6gzy!^e+&ttnr#11'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'hogwarts-hp.herokuapp.com']
 
 # Fix Forbidden (403) CSRF verification failed. Added CSRF_TRUSTED_ORIGINS
 CSRF_TRUSTED_ORIGINS = [
@@ -101,6 +103,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
 
     'profiles',
     'posts',
@@ -113,6 +116,7 @@ INSTALLED_APPS = [
 # Application definition
 SITE_ID = 1
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -121,6 +125,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Here the allowed origins are set for the network requests made to the server.
+# The API will use the CLIENT_ORIGIN variable,
+# which is the front end app's url.
+if 'CLIENT_ORIGIN' in os.environ:
+    CORS_ALLOWED_ORIGINS = [
+        os.environ.get('CLIENT_ORIGIN')
+    ]
+else:
+    CORS_ALLOWED_ORIGIN_REGEXES = [
+        r"^https://.*\.gitpod\.io$",
+    ]
+
+# Enable sending cookies in cross-origin requests so that
+# users can get authentication functionality
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'hogwarts_api.urls'
 
