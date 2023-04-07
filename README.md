@@ -8,7 +8,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ### Frontend Project Links
 
-- [Frontend - Repository](#)
+- [Frontend - Repository](https://github.com/llancruzz/hogwarts)
 - [Frontend - Deployment](#)
 
 ## Table Of Contents:
@@ -45,15 +45,12 @@ Models were created based on the database schema design as below. The CustomUser
 
 ### Future Features
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-
+- Chat messages to allow users to interact with each other.
+- Share button post, to allow users to share their posts on other social media such as Facebook, Twitter and so on.
 
 ## Testing
 
-A separate testing document has been created as [TESTING.md]()
+A separate testing document has been created as [TESTING.md](TESTING.md)
 A coverage testing document report has been created as [COVERAGE.md](COVERAGE.md)
 
 ## Technologies Used
