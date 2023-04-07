@@ -33,15 +33,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## User Stories and Tasks
 
-Development of the API was in service of delivering users stories created for the frontend project. All user stories have been documented in a separate file which can be viewed [here](#).
+Development of the API was in service of delivering users stories created for the frontend project. All user stories have been documented in a separate file which can be viewed [here](https://github.com/llancruzz/hogwarts/blob/main/USERSTORIES.md).
 
-Development tasks for the API were created as issues and linked to the projects Kanban board which can be found [here](#).
+Development tasks for the API were created as issues and linked to the projects Kanban board which can be found [here](https://github.com/users/llancruzz/projects/10/views/1).
 
 ## Database Schema
 
 Models were created based on the database schema design as below. The CustomUser model was created first as this extended the AbstractUser class to allowed users to be added to accounts to separate functionality. The remaining models were then created as required by the user stories.
 
-![Image of Database Schema]()
+![Image of Database Schema](docs/data_schema.png)
 
 ### Future Features
 
@@ -49,12 +49,12 @@ Models were created based on the database schema design as below. The CustomUser
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-- Match users with law firms to facilitate sale completion and provide fee comparison services.
+
 
 ## Testing
 
 A separate testing document has been created as [TESTING.md]()
-A coverage testing document report has been created as [COVERAGE.md]()
+A coverage testing document report has been created as [COVERAGE.md](COVERAGE.md)
 
 ## Technologies Used
 
@@ -90,7 +90,7 @@ and integrate systems more effectively
 
 ### Programs and Tools Used
 
-- [drawSQL](https://drawsql.app/) - Create Database Schema/ERD
+- [dbdiagram](https://dbdiagram.io/home) - Create Database Schema/Entity-Relationship Diagrams
 - [Gitpod:](https://www.gitpod.io/)
   - Gitpod was used as my code editor for this project.
 - [Git](https://git-scm.com/)
