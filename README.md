@@ -54,19 +54,20 @@ Models were created based on the database schema design as below. The CustomUser
 ## Testing
 
 A separate testing document has been created as [TESTING.md]()
+A coverage testing document report has been created as [COVERAGE.md]()
 
 ## Technologies Used
 
 ### Languages and Frameworks Used
 
-- Python
+- [Python](https://www.python.org/) - Python is a programming language that lets you work quickly
+and integrate systems more effectively
 - [Django](https://pypi.org/project/Django/3.2.14/) - High-level Python Web framework used to develop the project.
 - [djangorestframework](https://pypi.org/project/djangorestframework/3.14.0/) - Toolkit for building web API's with Django.
 
 ### Python Modules Used
 
 - Built-in Packages/Modules
-  - [math](https://docs.python.org/3/library/math.html) - The trigonometric functions acos, cos and sin and the constant pi from the math module were used in longitude and latitude calculations.
   - [pathlib](https://docs.python.org/3/library/pathlib.html) - Used to work with filepaths.
   - [os](https://docs.python.org/3/library/os.html) - This module provides a portable way of using operating system dependent functionality.
 
