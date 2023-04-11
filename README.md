@@ -4,12 +4,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Demo
 
-- [API - Live Deployment Link](#)
+- [API - Live Deployment Link](https://hogwarts-hp.herokuapp.com/)
 
 ### Frontend Project Links
 
 - [Frontend - Repository](https://github.com/llancruzz/hogwarts)
-- [Frontend - Deployment](#)
+- [Frontend - Deployment](https://hogwarts-hf.herokuapp.com/)
 
 ## Table Of Contents:
 
