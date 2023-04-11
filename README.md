@@ -4,7 +4,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Demo
 
-- [API - Live Deployment Link](#)
+- [API - Live Deployment Link](https://hogwarts-hp.herokuapp.com/)
 
 ### Frontend Project Links
 
