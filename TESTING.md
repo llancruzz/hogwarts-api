@@ -97,7 +97,7 @@ Manual testing took place throughout development of the API to ensure features f
 | Posts | Create | 201 Response | 403 Response | :white_check_mark: |
 | Posts | Read (List) | 200 Response | 403 Response | :white_check_mark: |
 | Posts | Update | 200 Response| 403 Response | :white_check_mark: |
-| Posts | Delete | 200 Response | 404 Response  | :white_check_mark: |
+| Posts | Delete | 200 Response | 403 Response  | :white_check_mark: |
 
 #### Profiles App
 
@@ -105,5 +105,5 @@ Manual testing took place throughout development of the API to ensure features f
 |---|---|---|---|---|
 | Profiles| Create | 201 Response | 201 Response | :white_check_mark: |
 | Profiles | Read (List) | 200 Response | 200 Response | :white_check_mark: |
-| Profiles | Update | N/A| N/A | N/A |
+| Profiles | Update | 200 Response| 403 Response | N/A |
 | Profiles | Delete | N/A | N/A  | N/A |
