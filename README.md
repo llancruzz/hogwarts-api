@@ -1,6 +1,16 @@
 # Hogwarts API
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Hogwarts is a social media platform that has been created based on the beloved Harry Potter saga. The main objective of this platform is to enable users to view posts that are related to the saga. Users who have registered on the platform are able to list posts and access the content that is contained within them.
+
+This project contains the API portion of the platform which has been created using the [Django REST framework](https://www.django-rest-framework.org/). This API serves as the authentication information and functionality for the front end of the project.
+
+The platform has implemented a custom user template which restricts functionality based on the type of user account that has been authenticated:
+  - Only registered users can create, update, and delete posts.
+  - Registered users can follow, like, and comment on posts.
+  - A user's profile can be viewed by other users and visitors.
+  - Profile update functionality is restricted to the profile owner.
+  - The CRUD functionality for Likes, Followers, Contacts and Comments is restricted to the respective user."
+
 
 ## Demo
 
@@ -23,6 +33,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
   - [Packages Used](#packages-used)
   - [Programs and Tools Used](#programs-and-tools-used)
 - [Deployment](#deployment)
+  - [Create a Database](#create-a-database)
   - [Forking the GitHub Repository](#forking-the-github-repository)
   - [Making a Local Clone](#making-a-local-clone)
   - [Deploying with Heroku](#deploying-with-heroku)
@@ -83,7 +94,7 @@ and integrate systems more effectively
   - [Pillow](https://pypi.org/project/Pillow/9.2.0/) - Fork of PIL, the Python Imaging Library which provides image processing capabilities.
   - [psycopg2](https://pypi.org/project/psycopg2/2.9.3/) - Python PostgreSQL database adapter.
   - [python-dotenv](https://pypi.org/project/python-dotenv/0.21.0/) - Set key-value pairs from `.env` file as environmental variables.
-  - [haversine](https://pypi.org/project/haversine/2.7.0/) - Calculate the distance between 2 points using their longitude and latitude.
+  - [coverage](https://coverage.readthedocs.io/en/7.2.3/). - Coverage measurement is typically used to gauge the effectiveness of tests. It can show which parts of your code are being exercised by tests, and which are not.
 
 ### Programs and Tools Used
 
@@ -100,9 +111,27 @@ Code](https://code.visualstudio.com/) to assist with formatting and code
 linting:
   - [flake8](https://github.com/pycqa/flake8) - Code Linter
   - [black](https://github.com/psf/black) - Code Formatter
-  - [pycodestyle](https://pypi.org/project/pycodestyle/2.9.1/) - Code Linter
 
 ## Deployment
+
+
+### Create a Database
+Create a new PostgreSQL database instance.
+
+#### Process
+1. Log in to [ElephantSQL.com](https://customer.elephantsql.com/login) to access your dashboard.
+   - *Note: If you don't have an ElephantSQL.com account yet, [click here to sign up](https://customer.elephantsql.com/signup).*
+1. Click “Create New Instance”
+1. Set up your plan:
+   - Give your plan a Name (this is commonly the name of the project).
+   - Select the Tiny Turtle (Free) plan.
+   - You can leave the Tags field blank.
+1. Select “Select Region”.
+1. Select a data center near you.
+1. Then click “Review”.
+1. Check your details are correct and then click “Create instance”.
+1. Return to the ElephantSQL dashboard and click on the database instance name for this project.
+1. In the URL section, click the copy icon to copy the database URL.
 
 ### Forking the GitHub Repository
 
@@ -172,7 +201,7 @@ repository by using the following steps...
     1. Key as `CLOUDINARY_URL` and the value as your cloudinary API Environment variable e.g. `cloudinary://**************:**************@*********`. Click the Add button.
     1. Key as `SECRET_KEY` and the value as a complex string which will be used to provide cryptographic signing. The use of a secret key generator is recommended such as [https://djecrety.ir](https://djecrety.ir/). Click the Add button.
     1. Ensure the key `DATABASE_URL` is already populated. This should have been created automatically by Heroku.
-    1. The `DATABASE_URL` should be copied into your local `.env`, created during the cloning process.
+    1. The `DATABASE_URL` should be copied from ElephantSQL dashboard your local `DETAILS`, created during the creating a new database process.
     1. To make authenticated requests to this API (e.g. from a fontend application) you are required to add the key `CLIENT_ORIGIN` with the value set as the URL you will be sending the authentication request from.
     1. Additionally, a `CLIENT_ORIGIN_DEV` key can be set with the value of a development server (IP or URL) for use during local development.
 1. Open the `.env` file in the project directory and delete the key / value pair `DEV_ENVIRONMENT_DATABASE = True` before saving the file. This can be added back after the next step to ensure local development changes will not alter the remote database.
@@ -190,6 +219,7 @@ repository by using the following steps...
 - [Django Documentation](https://docs.djangoproject.com/en/3.2/)
 - [Django REST Documentation](https://www.django-rest-framework.org/)
 - [Python Documentation](https://docs.python.org/3/)
+- [Stack Overflow](https://stackoverflow.com/)
 
 ### Code
 
@@ -199,4 +229,4 @@ repository by using the following steps...
 
 ### Acknowledgments
 
-A huge thank you to my partner for her patience and support throughout this project.
+A huge thank you to my partner for his patience and support throughout this project.
