@@ -14,7 +14,7 @@ class likeList(generics.ListCreateAPIView):
     The perform_create method associates the like with the logged in user.
     """
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     authentication_classes = [TokenAuthentication, SessionAuthentication]
     serializer_class = LikeSerializer
     queryset = Like.objects.all()
