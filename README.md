@@ -58,6 +58,7 @@ Models were created based on the database schema design as below. The CustomUser
 
 - Chat messages to allow users to interact with each other.
 - Share button post, to allow users to share their posts on other social media such as Facebook, Twitter and so on.
+- Save posts button, to allow users to review the posts later.
 
 ## Testing
 
@@ -106,8 +107,7 @@ and integrate systems more effectively
     Push to GitHub.
 - [GitHub:](https://github.com/)
   - GitHub is used to store the projects code after being pushed from Git.
-- The following modules were installed or enabled in [Visual Studio
-Code](https://code.visualstudio.com/) to assist with formatting and code
+- The following modules were installed or enabled in [Gitpode Code](https://www.gitpod.io/) to assist with formatting and code
 linting:
   - [flake8](https://github.com/pycqa/flake8) - Code Linter
   - [black](https://github.com/psf/black) - Code Formatter
