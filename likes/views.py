@@ -1,7 +1,5 @@
 # Import necessary modules
 from rest_framework import generics, permissions
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.authentication import SessionAuthentication
 from hogwarts_api.permissions import IsOwnerOrReadOnly
 from rest_framework.permissions import IsAuthenticated
 from .models import Like
@@ -14,8 +12,7 @@ class likeList(generics.ListCreateAPIView):
     The perform_create method associates the like with the logged in user.
     """
 
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication, SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     serializer_class = LikeSerializer
     queryset = Like.objects.all()
 
