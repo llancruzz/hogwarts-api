@@ -35,7 +35,7 @@ class LikeListViewTestCase(APITestCase):
     def test_list_likes_unauthenticated_user(self):
         url = reverse("like-list")
         response = self.client.get(url)
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_like_string_representation(self):
         user = User.objects.create_user(username="harry")
