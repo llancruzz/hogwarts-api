@@ -5,14 +5,14 @@ from .models import HouseProfile
 from .serializers import HouseProfileSerializer
 
 
-class HouseProfileList(generics.ListCreateAPIView):
+class HouseProfileList(generics.ListAPIView):
     """
     HouseProfileList generic view:
     List all profile of hogwarts'house if logged in.
     """
 
     serializer_class = HouseProfileSerializer
-    permission_classes[permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = HouseProfile.objects.all()
 
 
