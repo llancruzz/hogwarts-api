@@ -113,6 +113,7 @@ INSTALLED_APPS = [
     "likes",
     "followers",
     "contacts",
+    "houses",
 ]
 
 # Application definition
