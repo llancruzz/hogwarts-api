@@ -7,6 +7,7 @@
   - [Endpoint Testing](#endpoint-testing)
   - [CRUD Functionality Testing](#crud-functionality-testing)
     - [Comments App](#comments-app)
+    - [Houses App](#houses-app)
     - [Contacts App](#contacts-app)
     - [Followers App](#followers-app)
     - [Likes App](#likes-app)
@@ -40,6 +41,8 @@ Manual testing took place throughout development of the API to ensure features f
 | root | :white_check_mark: |
 | /comments/ | :white_check_mark: |
 | /comments/\<id>/ | :white_check_mark: |
+| /houses/ | :white_check_mark: |
+| /houses/\<id>/ | :white_check_mark: |
 | /contacts/ | :white_check_mark: |
 | /contacts/\<id>/ | :white_check_mark: |
 | /followers/ | :white_check_mark: |
@@ -50,6 +53,7 @@ Manual testing took place throughout development of the API to ensure features f
 | /posts/\<id>/ | :white_check_mark: |
 | /profiles/ | :white_check_mark: |
 | /profiles/\<id>/ | :white_check_mark: |
+
 
 ### CRUD Functionality Testing
 
@@ -62,6 +66,14 @@ Manual testing took place throughout development of the API to ensure features f
 | Comments | Update | 200 Response |403 Response | :white_check_mark: |
 | Comments | Delete | 200 Response | 403 Response | :white_check_mark: |
 
+#### Houses App
+
+| App | Action | Authenticated | Unauthenticated | Passed |
+|---|---|---|---|---|
+| Houses | Create | N/A | N/A  | N/A |
+| Houses | Read (List) | 200 Response | N/A | :white_check_mark: |
+| Houses | Update | N/A | N/A  | N/A |
+| Houses | Delete | N/A | N/A  | N/A |
 
 #### Contacts App
 
@@ -70,7 +82,7 @@ Manual testing took place throughout development of the API to ensure features f
 | Contacts | Create | 201 Response | N/A | :white_check_mark: |
 | Contacts | Read (List) | N/A | N/A | N/A |
 | Contacts | Update | N/A| N/A | N/A |
-| Contacts | N/A | N/A | N/A  | N/A |
+| Contacts | Delete | N/A | N/A  | N/A |
 
 #### Followers App
 
