@@ -53,6 +53,8 @@ Manual testing took place throughout development of the API to ensure features f
 | /posts/\<id>/ | :white_check_mark: |
 | /profiles/ | :white_check_mark: |
 | /profiles/\<id>/ | :white_check_mark: |
+| /houses/ | :white_check_mark: |
+| /houses/\<id>/ | :white_check_mark: |
 
 
 ### CRUD Functionality Testing

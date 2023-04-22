@@ -4,5 +4,5 @@ from houses import views
 
 urlpatterns = [
     path("houses/", views.HouseProfileList.as_view()),
-    path("houses/<int:pk>/", views.HouseProfileDetail.as_view),
+    path("houses/<int:pk>/", views.HouseProfileDetail.as_view()),
 ]
