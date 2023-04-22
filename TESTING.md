@@ -121,3 +121,5 @@ Manual testing took place throughout development of the API to ensure features f
 | Profiles | Read (List) | 200 Response | 200 Response | :white_check_mark: |
 | Profiles | Update | 200 Response| 403 Response | N/A |
 | Profiles | Delete | N/A | N/A  | N/A |
+
+Return to [README.md](README.md) :book:
