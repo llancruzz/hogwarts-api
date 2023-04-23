@@ -20,17 +20,15 @@ class HouseProfile(models.Model):
 
 
 @receiver(post_save, post_delete, sender=Like)
-def update_house_points(instance, created, **kwargs):
+def update_house_points(instance, **kwargs):
     """Create or update the house points"""
     # Get the house name from the post in the like
     house = instance.post.house
     # Get the house whose points need updating
     house_to_update, created = HouseProfile.objects.get_or_create(
         house_name=house)
+    # Count the number of likes for the house
+    likes_count = Like.objects.filter(post__house=house).count()
     # Set points as current total
-    if created:
-        house_to_update.current_points = 0
-    else:
-        likes_count = Like.objects.filter(post__house=house).count()
-        house_to_update.current_points = likes_count
+    house_to_update.current_points = likes_count
     house_to_update.save()
