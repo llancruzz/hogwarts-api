@@ -36,6 +36,6 @@ def update_house_points(instance, created, deleted, **kwargs):
         house = instance.post.house
         # Get the house whos points need updated
         house_to_update = HouseProfile.objects.get(house_name=house)
-        # Set points as current total + 1
+        # Set points as current total - 1
         house_to_update.current_points = house_to_update.current_points - 1
         house_to_update.save()
