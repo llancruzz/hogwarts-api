@@ -1,6 +1,6 @@
 # Import necessary modules
 from likes.models import Like
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db import models
 from django.contrib.auth.models import User
@@ -20,16 +20,14 @@ class HouseProfile(models.Model):
 
 
 @receiver(post_save, sender=Like)
-@receiver(post_delete, sender=Like)
-def update_house_points(instance, **kwargs):
+def update_house_points(instance, created, **kwargs):
     """Create or update the house points"""
-    # Get the house name from the post in the like
-    house = instance.post.house
-    # Get the house whos points need updated
-    house_to_update, _ = HouseProfile.objects.get_or_create(house_name=house)
-    # Set points as current total +1 if like, -1 if unlike
-    if instance.is_like:
-        house_to_update.current_points += 1
-    else:
-        house_to_update.current_points -= 1
-    house_to_update.save()
+    # Check if an object was created
+    if created:
+        # Get the house name from the post in the like
+        house = instance.post.house
+        # Get the house whos points need updated
+        house_to_update = HouseProfile.objects.get(house_name=house)
+        # Set points as current total + 1
+        house_to_update.current_points = house_to_update.current_points + 1
+        house_to_update.save()
