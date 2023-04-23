@@ -19,7 +19,8 @@ class HouseProfile(models.Model):
         return self.house_name
 
 
-@receiver(post_save, post_delete, sender=Like)
+@receiver(post_delete, sender=Like)
+@receiver(post_save, sender=Like)
 def update_house_points(instance, **kwargs):
     """Create or update the house points"""
     # Get the house name from the post in the like
