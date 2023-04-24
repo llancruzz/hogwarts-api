@@ -5,4 +5,4 @@
 
 ### Hogwart - API Coverage Report
 
-   * ![Coverage Report](docs/coverage_report.jpg)
+   * ![Coverage Report](docs/coverage_report.png)

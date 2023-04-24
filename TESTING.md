@@ -25,7 +25,6 @@ Automated tests were created for the Comments, Contacts, Followers, Likes and Po
 - [Comments - View Tests](https://github.com/llancruzz/hogwarts-api/blob/main/comments/tests.py)
 - [Contacts - View Tests](https://github.com/llancruzz/hogwarts-api/blob/main/contacts/tests.py)
 - [Followers - View Tests](https://github.com/llancruzz/hogwarts-api/blob/main/followers/tests.py)
-- [Likes - View Tests](https://github.com/llancruzz/hogwarts-api/blob/main/likes/tests.py)
 - [Posts - View Tests](https://github.com/llancruzz/hogwarts-api/blob/main/posts/tests.py)
 
 Please find the full coverage report [COVERAGE.md](https://github.com/llancruzz/hogwarts-api/blob/main/COVERAGE.md).
