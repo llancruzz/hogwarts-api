@@ -6,3 +6,6 @@
 ### Hogwart - API Coverage Report
 
    * ![Coverage Report](docs/coverage_report.png)
+
+
+Return to [README.md](README.md) :book:
